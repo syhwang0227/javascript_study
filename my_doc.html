@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>TODO List</h1>
+    <input id="data" onkeyup="enterData(event)" />
+    <ul id="container"></ul>
+</body>
+<script>
+    let array1 = ["공부하기", "청소하기", "잠자기"]
+
+    function setLiTag() {
+        const containerDiv = window.document.getElementById("container");
+
+        while (containerDiv.hasChildNodes()) {
+            containerDiv.removeChild(containerDiv.lastChild);
+        }
+
+        array1.forEach((value) => {
+            containerDiv.insertAdjacentHTML(
+                `beforeend`,
+                `<li>
+                            <span>${value}</span>
+                            <span style="color:red;cursor:pointer" onclick="deleteItem('${value}')"> X</span>
+                    </li>`
+            )
+        });
+    }
+
+    function addItem(itemName) {
+        array1.push(itemName);
+        setLiTag();
+    }
+
+    function deleteItem(itemName) {
+        const idx = array1.indexOf(itemName);
+
+        array1.splice(idx, 1);
+
+        setLiTag();
+    }
+
+    function enterData(event) {
+        if (event.keyCode === 13) {
+            const dataInput = document.getElementById("data");
+            if (
+                dataInput.value != null &&
+                dataInput.value != "" &&
+                !array1.includes(dataInput.value)
+            ) {
+                addItem(dataInput.value);
+
+                dataInput.value = "";
+            } else {
+                alert(`이미 등록되어 있습니다.`);
+            }
+        }
+    }
+
+    setLiTag();
+
+</script>
+</html>
