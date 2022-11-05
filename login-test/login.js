@@ -106,6 +106,24 @@ function checkJoinFields(){
 
 // 1. 로그인 버튼 함수 만들기
 function login() {
+
+    const checkLoginResult = checkLoginFields();
+
+    if(!checkLoginResult){
+        return;
+    }
+
+    // 로그인 진행
+    const loginUsernameElement = document.getElementById("loginUsername");
+    const loginPasswordElement = document.getElementById("loginPassword");
+
+    const newLoginUser = {
+        loginUsername: loginUsernameElement.value,
+        loginPassword: loginPasswordElement.value
+    }
+
+    console.log(newLoginUser);
+
     alert("로그인이 완료 되었습니다.");
 }
 
@@ -121,7 +139,7 @@ function checkLoginFields() {
     // loginUsername이 없으면 안 됨
     if(loginUsernameElement.value == ""){
         alert("ID를 입력해주세요.");
-        loginUsernameElement.focus();  // 커서 이동
+        loginUsernameElement.focus();
         return false;
     }
 

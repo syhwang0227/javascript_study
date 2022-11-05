@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const obj = {
+      name: "이름",
+      age: 5,
+    };
+
+    // localStorage.setItem("name", obj);  // 날라가버린다.
+    localStorage.setItem("name", JSON.stringify(obj)); // 객체를 json화 한 것이다. // 데이터 보내기
+
+    // 데이터 가져오기
+    // const tempObj = localStorage.getItem("name");
+
+    // // console.log(tempObj);
+    // console.log(typeof tempObj);  // 이것은 문자열이다.
+
+    const tempObj = JSON.parse(localStorage.getItem("name"));
+    console.log(tempObj);
+    console.log(typeof tempObj);
+
+  </script>
+</html>
